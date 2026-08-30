@@ -45,25 +45,20 @@
       scroll-behavior: smooth;
     }
 
-    /* Background ក្បាច់កម្រាលផ្កាចន្ទន៍ខ្មែរ (Khmer Floral Seamless Pattern) */
+    /* Background យករូបភាពក្បាច់កម្រាលផ្កាចន្ទន៍ (រូបទី ៦) មកប្រើផ្ទាល់ */
     .khmer-pattern-bg {
       background-color: #FAF6EE;
-      background-image: radial-gradient(#D4AF37 0.75px, transparent 0.75px), radial-gradient(#D4AF37 0.75px, #FAF6EE 0.75px);
-      background-size: 30px 30px;
-      background-position: 0 0, 15px 15px;
-      background-image: 0.15;
+      background-image: url('images/kbach-pattern.jpg');
+      background-repeat: repeat;
+      background-size: 220px;
     }
 
-    /* Golden Metallic Gradient & Shadow */
+    /* Golden Metallic Gradient & Glow */
     .gold-gradient {
       background: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
     }
-    .gold-text {
-      background: linear-gradient(135deg, #8A641A, #D4AF37, #8A641A);
-      -webkit-text-fill-color: transparent;
-    }
     .gold-glow {
-      text-shadow: 0 0 16px rgba(212, 175, 55, 0.4);
+      text-shadow: 0 0 16px rgba(212, 175, 55, 0.45);
     }
 
     /* Envelope Opening Animation */
@@ -82,63 +77,44 @@
     
     <!-- ទ្វារខាងឆ្វេង (Left Flap) -->
     <div id="flap-left" class="absolute left-0 top-0 bottom-0 w-1/2 bg-[#F3EAD6] border-r-2 border-amber-400/80 shadow-2xl flex flex-col justify-between p-6 transition-transform duration-1000 ease-in-out z-20 overflow-hidden">
-      <!-- ក្បាច់កម្រាលក្នុងទ្វារ -->
-      <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#8A641A_1px,transparent_1px)] [background-size:16px_16px]"></div>
+      <!-- ក្បាច់ជ្រុងលើឆ្វេង (រូបទី ៣ ឬ ៤) -->
+      <img src="1 (4) - Copy.png" alt="Khmer Ornament" class="w-16 h-16 md:w-20 md:h-20 object-contain relative z-10 opacity-75">
       
-      <!-- ក្បាច់ជ្រុងលើឆ្វេង -->
-      <svg class="w-20 h-20 text-amber-700/60 relative z-10" viewBox="0 0 100 100" fill="currentColor">
-        <path d="M0,0 L90,0 C60,15 15,60 0,90 Z"/>
-        <circle cx="20" cy="20" r="6" fill="#B38728"/>
-      </svg>
       <div class="text-right pr-4 relative z-10">
-        <p class="font-banteaysrey text-amber-900 text-lg md:text-2xl opacity-75">សិរីសួស្តី</p>
+        <p class="font-banteaysrey text-amber-900 text-lg md:text-2xl opacity-80">សិរីសួស្តី</p>
       </div>
+
       <!-- ក្បាច់ជ្រុងក្រោមឆ្វេង -->
-      <svg class="w-20 h-20 text-amber-700/60 relative z-10 rotate-[-90deg]" viewBox="0 0 100 100" fill="currentColor">
-        <path d="M0,0 L90,0 C60,15 15,60 0,90 Z"/>
-      </svg>
+      <img src="1 (4).png" alt="Khmer Ornament" class="w-16 h-16 md:w-20 md:h-20 object-contain relative z-10 opacity-75 -rotate-90">
     </div>
 
     <!-- ទ្វារខាងស្តាំ (Right Flap) -->
     <div id="flap-right" class="absolute right-0 top-0 bottom-0 w-1/2 bg-[#F3EAD6] border-l-2 border-amber-400/80 shadow-2xl flex flex-col justify-between p-6 transition-transform duration-1000 ease-in-out z-20 overflow-hidden">
-      <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#8A641A_1px,transparent_1px)] [background-size:16px_16px]"></div>
-      
       <!-- ក្បាច់ជ្រុងលើស្តាំ -->
       <div class="flex justify-end">
-        <svg class="w-20 h-20 text-amber-700/60 relative z-10 rotate-90" viewBox="0 0 100 100" fill="currentColor">
-          <path d="M0,0 L90,0 C60,15 15,60 0,90 Z"/>
-          <circle cx="20" cy="20" r="6" fill="#B38728"/>
-        </svg>
+        <img src="1 (5) - Copy.pngg" alt="Khmer Ornament" class="w-16 h-16 md:w-20 md:h-20 object-contain relative z-10 opacity-75 rotate-90">
       </div>
+
       <div class="text-left pl-4 relative z-10">
-        <p class="font-banteaysrey text-amber-900 text-lg md:text-2xl opacity-75">អាពាហ៍ពិពាហ៍</p>
+        <p class="font-banteaysrey text-amber-900 text-lg md:text-2xl opacity-80">អាពាហ៍ពិពាហ៍</p>
       </div>
-      <!-- ក្បាច់ជ្រុងក្រោមកស្តាំ -->
+
+      <!-- ក្បាច់ជ្រុងក្រោមស្តាំ -->
       <div class="flex justify-end">
-        <svg class="w-20 h-20 text-amber-700/60 relative z-10 rotate-180" viewBox="0 0 100 100" fill="currentColor">
-          <path d="M0,0 L90,0 C60,15 15,60 0,90 Z"/>
-        </svg>
+        <img src="1 (6) - Copy.png" alt="Khmer Ornament" class="w-16 h-16 md:w-20 md:h-20 object-contain relative z-10 opacity-75 rotate-180">
       </div>
     </div>
 
-    <!-- ត្រាក្បាច់មាសចំកណ្តាល (Gold Medallion Seal) -->
+    <!-- ត្រាក្បាច់មាសចំកណ្តាល (រូបទី ៥) -->
     <div id="envelope-seal" class="relative z-30 flex flex-col items-center justify-center text-center p-6 transition-all duration-700">
       
-      <!-- ក្បាច់ផ្កាចន្ទន៍រង្វង់មាស (Khmer Gold Medallion) -->
-      <div class="relative w-36 h-36 md:w-44 md:h-44 rounded-full gold-gradient p-1.5 shadow-2xl flex items-center justify-center border-2 border-amber-100/90 animate-pulse">
-        <div class="w-full h-full rounded-full bg-[#FCFAF5] flex flex-col items-center justify-center p-3 text-center border border-amber-300 shadow-inner">
-          <svg class="w-10 h-10 text-amber-700 mb-1" viewBox="0 0 100 100" fill="currentColor">
-            <!-- រូបក្បាច់ផ្កាចន្ទន៍ ៤ ទិស -->
-            <path d="M50 0 C55 25 75 45 100 50 C75 55 55 75 50 100 C45 75 25 55 0 50 C25 45 45 25 50 0 Z"/>
-            <circle cx="50" cy="50" r="14" fill="#B38728"/>
-            <circle cx="50" cy="50" r="7" fill="#FCFAF5"/>
-          </svg>
-          <span class="font-banteaysrey text-amber-950 text-xs md:text-sm font-bold">វិបុល & ធីតា</span>
-        </div>
+      <!-- រូបក្បាច់រង្វង់មាសចំកណ្តាល -->
+      <div class="relative flex items-center justify-center">
+        <img src="IMG_8362.PNG" alt="Gold Seal" class="w-36 h-36 md:w-44 md:h-44 object-contain animate-pulse drop-shadow-2xl">
       </div>
 
       <!-- ប្រអប់បង្ហាញឈ្មោះភ្ញៀវ និងប៊ូតុងបើក -->
-      <div class="mt-6 bg-white/95 backdrop-blur-md border border-amber-300/80 px-6 py-4 rounded-3xl shadow-xl space-y-3 max-w-xs">
+      <div class="mt-4 bg-white/95 backdrop-blur-md border border-amber-300/80 px-6 py-4 rounded-3xl shadow-2xl space-y-3 max-w-xs">
         <div>
           <p class="text-[11px] text-stone-500">សូមគោរពអញ្ជើញ</p>
           <p id="guest-name-modal" class="font-bold text-amber-950 text-base mt-0.5">ភ្ញៀវកិត្តិយស</p>
@@ -163,44 +139,50 @@
     <i id="music-icon" data-lucide="volume-2" class="w-5 h-5"></i>
   </button>
 
-  <!-- ==================== 2. HERO SECTION (មានក្បាច់ប្រាសាទ និងក្បាច់ផ្កាចន្ទន៍) ==================== -->
+  <!-- ==================== 2. HERO SECTION (មានក្បាច់ស៊ុម និងរូបក្បាច់ខ្មែរ) ==================== -->
   <section class="min-h-screen relative flex items-center justify-center px-4 py-20 bg-stone-950 text-white overflow-hidden">
     
-    <!-- Background Image ជាមួយ Dark Warm Tint -->
-    <div class="absolute inset-0 z-0 bg-cover bg-center scale-105 filter brightness-[0.55]" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop');">
+    <!-- Background Pre-Wedding Image -->
+    <div class="absolute inset-0 z-0 bg-cover bg-center scale-105 filter brightness-[0.55]" style="background-image: url('images/hero-bg.jpg');">
     </div>
 
-    <!-- Gradient Overlay បង្កើតភាពទន់ភ្លន់ -->
+    <!-- Gradient Overlay -->
     <div class="absolute inset-0 z-10 bg-gradient-to-b from-stone-950/85 via-stone-900/60 to-[#FAF6EE]"></div>
 
-    <!-- ក្បាច់កំពូលប្រាសាទខ្មែរ (Angkor Wat Silhouette / Khmer Temple Spire Motif) -->
-    <div class="absolute top-4 left-1/2 -translate-x-1/2 z-20 opacity-40 pointer-events-none w-64 max-w-sm text-amber-300">
-      <svg viewBox="0 0 300 80" fill="currentColor" class="w-full h-auto">
-        <!-- កំពូលប្រាសាទ ៣ -->
-        <path d="M150 0 L158 35 L170 38 L162 48 L168 75 L150 70 L132 75 L138 48 L130 38 L142 35 Z M90 20 L96 45 L105 48 L99 55 L103 75 L90 71 L77 75 L81 55 L75 48 L84 45 Z M210 20 L216 45 L225 48 L219 55 L223 75 L210 71 L197 75 L201 55 L195 48 L204 45 Z"/>
-      </svg>
-    </div>
-
-    <!-- ផ្ទាំងកណ្តាល Hero Card -->
-    <div class="relative z-20 max-w-2xl w-full mx-auto text-center space-y-7 py-10 px-6 sm:px-10 rounded-3xl bg-stone-950/55 backdrop-blur-md border border-amber-300/40 shadow-2xl" data-aos="fade-up" data-aos-duration="1000">
+    <!-- ផ្ទាំងកណ្តាល Hero Card អមដោយក្បាច់ស៊ុម ៤ ជ្រុង -->
+    <div class="relative z-20 max-w-2xl w-full mx-auto text-center space-y-7 py-12 px-6 sm:px-10 rounded-3xl bg-stone-950/60 backdrop-blur-md border border-amber-300/40 shadow-2xl overflow-hidden" data-aos="fade-up" data-aos-duration="1000">
       
-      <!-- ក្បាច់ភ្ញីទេសខាងលើ -->
+      <!-- ក្បាច់ជ្រុងទាំង ៤ នៃ Hero Card (រូបទី ៣ ឬ ៤) -->
+      <img src="images/kbach-corner.png" class="absolute top-2 left-2 w-12 h-12 object-contain opacity-70">
+      <img src="images/kbach-corner.png" class="absolute top-2 right-2 w-12 h-12 object-contain opacity-70 rotate-90">
+      <img src="images/kbach-corner.png" class="absolute bottom-2 left-2 w-12 h-12 object-contain opacity-70 -rotate-90">
+      <img src="images/kbach-corner.png" class="absolute bottom-2 right-2 w-12 h-12 object-contain opacity-70 rotate-180">
+
+      <!-- ក្បាច់ក្បាលខាងលើ (រូបទី ៥) -->
       <div class="flex justify-center">
-        <svg class="w-12 h-12 text-amber-300/90" viewBox="0 0 100 100" fill="currentColor">
-          <path d="M50 0 C55 25 75 45 100 50 C75 55 55 75 50 100 C45 75 25 55 0 50 C25 45 45 25 50 0 Z"/>
-          <circle cx="50" cy="50" r="12" fill="#FAF6EE"/>
-          <circle cx="50" cy="50" r="6" fill="#B38728"/>
-        </svg>
+        <img src="images/kbach-seal.png" class="w-16 h-16 object-contain drop-shadow-md">
       </div>
 
-      <div class="space-y-1">
+      <!-- ឈ្មោះកូនកំលោះ-កូនក្រមុំ អមដោយក្បាច់ភ្ញីភ្លើង (រូបទី ២) -->
+      <div class="space-y-2">
         <p class="text-amber-300 tracking-widest text-xs uppercase font-medium">The Wedding of</p>
-        <h1 class="font-banteaysrey text-4xl sm:text-5xl text-amber-100 gold-glow leading-relaxed">សុខ វិបុល</h1>
-        <p class="font-playfair italic text-2xl text-amber-300/90 drop-shadow">&</p>
-        <h1 class="font-banteaysrey text-4xl sm:text-5xl text-amber-100 gold-glow leading-relaxed">ចាន់ ធីតា</h1>
+        
+        <div class="flex items-center justify-center gap-3">
+          <!-- ក្បាច់ខាងឆ្វេង (Flip) -->
+          <img src="images/kbach-flame.png" class="w-7 h-11 object-contain -scale-x-100 opacity-80 hidden sm:block">
+          
+          <div class="space-y-1">
+            <h1 class="font-banteaysrey text-4xl sm:text-5xl text-amber-100 gold-glow leading-relaxed">សុខ វិបុល</h1>
+            <p class="font-playfair italic text-2xl text-amber-300/90">&</p>
+            <h1 class="font-banteaysrey text-4xl sm:text-5xl text-amber-100 gold-glow leading-relaxed">ចាន់ ធីតា</h1>
+          </div>
+
+          <!-- ក្បាច់ខាងស្តាំ -->
+          <img src="images/kbach-flame.png" class="w-7 h-11 object-contain opacity-80 hidden sm:block">
+        </div>
       </div>
 
-      <!-- បន្ទាត់លម្អក្បាច់ខ្មែរ -->
+      <!-- បន្ទាត់លម្អ -->
       <div class="flex items-center justify-center gap-3 text-amber-300/80">
         <div class="h-[1px] w-14 bg-gradient-to-r from-transparent to-amber-300"></div>
         <i data-lucide="heart" class="w-4 h-4 fill-amber-400 text-amber-400"></i>
@@ -231,7 +213,7 @@
         </div>
       </div>
 
-      <div class="pt-4 flex justify-center animate-bounce opacity-80">
+      <div class="pt-2 flex justify-center animate-bounce opacity-80">
         <a href="#ceremony-info" class="text-amber-200 hover:text-amber-100">
           <i data-lucide="chevron-down" class="w-6 h-6"></i>
         </a>
@@ -241,15 +223,12 @@
   </section>
 
   <!-- ==================== 3. COUPLE & PARENTS (ព័ត៌មានគ្រួសារ) ==================== -->
-  <section id="ceremony-info" class="py-20 px-4 bg-white/80 backdrop-blur-sm border-y border-amber-200/60 relative">
+  <section id="ceremony-info" class="py-20 px-4 bg-white/85 backdrop-blur-sm border-y border-amber-200/60 relative">
     
     <div class="max-w-3xl mx-auto space-y-12 text-center relative z-10">
       <div class="space-y-2" data-aos="fade-up">
-        <!-- ក្បាច់ក្បាលផ្នែក -->
-        <div class="flex justify-center mb-2">
-          <svg class="w-8 h-8 text-amber-600" viewBox="0 0 100 100" fill="currentColor">
-            <path d="M50 0 C55 25 75 45 100 50 C75 55 55 75 50 100 C45 75 25 55 0 50 C25 45 45 25 50 0 Z"/>
-          </svg>
+        <div class="flex justify-center mb-1">
+          <img src="IMG_6801.PNG" class="w-10 h-10 object-contain">
         </div>
         <h3 class="font-banteaysrey text-2xl md:text-3xl text-amber-950">កិត្តិយសនៃគ្រួសារទាំងសងខាង</h3>
         <p class="text-xs text-stone-500">យើងខ្ញុំមានកិត្តិយសសូមគោរពអញ្ជើញ</p>
@@ -258,7 +237,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
         <!-- ខាងកូនកំលោះ -->
         <div class="bg-[#FDFBF7] border-2 border-amber-200/70 rounded-3xl p-6 space-y-3 shadow-md relative overflow-hidden" data-aos="fade-right" data-aos-delay="100">
-          <div class="absolute -top-6 -right-6 w-16 h-16 bg-amber-100 rounded-full blur-xl"></div>
+          <img src="IMG_6801.PNG" class="absolute top-1.5 right-1.5 w-8 h-8 object-contain opacity-40 rotate-90">
           <p class="text-xs text-amber-800 font-semibold uppercase tracking-wider">មាតាបិតាខាងប្រុស</p>
           <p class="font-semibold text-stone-800">លោក សុខ សុវណ្ណ & លោកស្រី គង់ ម៉ារី</p>
           <div class="pt-3 border-t border-amber-200/60">
@@ -269,7 +248,7 @@
 
         <!-- ខាងកូនក្រមុំ -->
         <div class="bg-[#FDFBF7] border-2 border-amber-200/70 rounded-3xl p-6 space-y-3 shadow-md relative overflow-hidden" data-aos="fade-left" data-aos-delay="100">
-          <div class="absolute -top-6 -right-6 w-16 h-16 bg-amber-100 rounded-full blur-xl"></div>
+          <img src="IMG_6801.PNG" class="absolute top-1.5 right-1.5 w-8 h-8 object-contain opacity-40 rotate-90">
           <p class="text-xs text-amber-800 font-semibold uppercase tracking-wider">មាតាបិតាខាងស្រី</p>
           <p class="font-semibold text-stone-800">លោក ចាន់ សុផល & លោកស្រី អ៊ុ វ៉ាន់នី</p>
           <div class="pt-3 border-t border-amber-200/60">
@@ -330,7 +309,7 @@
   </div>
 
   <!-- ==================== 5. TIMELINE / PROGRAM ==================== -->
-  <section class="py-20 px-4 bg-white/80 backdrop-blur-sm border-y border-amber-200/60">
+  <section class="py-20 px-4 bg-white/85 backdrop-blur-sm border-y border-amber-200/60">
     <div class="max-w-2xl mx-auto space-y-10">
       <div class="text-center space-y-2" data-aos="fade-up">
         <h3 class="font-banteaysrey text-2xl md:text-3xl text-amber-950">កាលវិភាគកម្មវិធី</h3>
@@ -398,7 +377,7 @@
   </section>
 
   <!-- ==================== 7. RSVP & DIGITAL GIFT ==================== -->
-  <section class="py-20 px-4 bg-white/80 backdrop-blur-sm border-t border-amber-200/60">
+  <section class="py-20 px-4 bg-white/85 backdrop-blur-sm border-t border-amber-200/60">
     <div class="max-w-xl mx-auto space-y-12">
       
       <!-- RSVP Form -->
@@ -453,7 +432,7 @@
 
         <div class="p-4 bg-white border border-amber-200 rounded-2xl inline-block shadow-sm">
           <div class="w-44 h-44 bg-white border border-stone-200 rounded-xl mx-auto flex items-center justify-center p-2 shadow-inner">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=KHQR_MEMBER_CODE_EXAMPLE" alt="KHQR Code" class="w-full h-full object-contain">
+            <img src="images/khqr.png" alt="KHQR Code" class="w-full h-full object-contain" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=KHQR_EXAMPLE'">
           </div>
           <p class="text-xs font-semibold text-amber-950 mt-2">KHQR (ABA / Bakong)</p>
           <p class="text-[11px] text-stone-500">ឈ្មោះគណនី: SOK VIBOL & CHAN THIDA</p>
@@ -484,20 +463,18 @@
       }
     });
 
-    // បើកផ្ទាំងទ្វារធៀបមាស (Slide-Open Flaps Animation)
+    // បើកផ្ទាំងទ្វារធៀបមាស
     function openInvitation() {
       const leftFlap = document.getElementById('flap-left');
       const rightFlap = document.getElementById('flap-right');
       const seal = document.getElementById('envelope-seal');
       const modal = document.getElementById('welcome-modal');
 
-      // បំបាត់ត្រាកណ្តាល និងរំកិលទ្វារសងខាង
       seal.style.opacity = '0';
       seal.style.transform = 'scale(0.8)';
       leftFlap.classList.add('flap-left-open');
       rightFlap.classList.add('flap-right-open');
 
-      // ចាក់ភ្លេង
       const music = document.getElementById('bg-music');
       const musicToggle = document.getElementById('music-toggle');
       music.play().then(() => {
@@ -506,7 +483,6 @@
         musicToggle.classList.remove('hidden');
       });
 
-      // បិទ Modal ទាំងស្រុងក្រោយពេលទ្វាររបើកផុត
       setTimeout(() => {
         modal.classList.add('opacity-0', 'pointer-events-none');
         AOS.refresh();
