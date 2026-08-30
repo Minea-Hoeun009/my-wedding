@@ -1,0 +1,24 @@
+{
+  "name": "ធៀបការឌីជីថល | សុខ វិបុល & ចាន់ ធីតា",
+  "short_name": "វិបុល & ធីតា",
+  "description": "លិខិតអញ្ជើញអាពាហ៍ពិពាហ៍បែបឌីជីថល",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FAF6EE",
+  "theme_color": "#8A641A",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "images/kbach-seal.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/kbach-seal.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

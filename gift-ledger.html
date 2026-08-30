@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ប្រព័ន្ធកត់ចំណងដៃឌីជីថល | Digital Gift Ledger</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Banteay+Srey&family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body { font-family: 'Kantumruy Pro', sans-serif; }
+    .font-banteaysrey { font-family: 'Banteay Srey', cursive, serif; }
+  </style>
+</head>
+<body class="bg-stone-100 text-stone-800 antialiased min-h-screen">
+
+  <!-- ==================== 1. PIN LOCK SCREEN ==================== -->
+  <div id="pin-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-stone-900/90 backdrop-blur-md p-4">
+    <div class="max-w-xs w-full bg-white rounded-3xl p-6 text-center space-y-4 shadow-2xl border border-amber-200">
+      <div class="w-14 h-14 bg-amber-100 text-amber-800 rounded-full flex items-center justify-center mx-auto">
+        <i data-lucide="lock" class="w-6 h-6"></i>
+      </div>
+      <div>
+        <h2 class="font-bold text-stone-900 text-base">ប្រព័ន្ធកត់ចំណងដៃសម្ងាត់</h2>
+        <p class="text-xs text-stone-500">សូមបញ្ចូលលេខកូដសម្ងាត់ (PIN)</p>
+      </div>
+      <input type="password" id="pin-input" maxlength="6" placeholder="••••" class="w-full text-center tracking-widest text-2xl font-bold py-2 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-500">
+      <button onclick="unlockLedger()" class="w-full bg-amber-800 text-white font-semibold py-2.5 rounded-xl text-sm hover:bg-amber-700">
+        ចូលប្រព័ន្ធ
+      </button>
+      <p class="text-[11px] text-stone-400">PIN លំនាំដើម៖ 1688</p>
+    </div>
+  </div>
+
+  <!-- ==================== 2. MAIN DASHBOARD ==================== -->
+  <div id="main-app" class="hidden max-w-4xl mx-auto p-4 md:p-6 space-y-6">
+    
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-6 rounded-3xl border border-stone-200/80 shadow-sm">
+      <div>
+        <h1 class="font-banteaysrey text-2xl text-amber-950">សៀវភៅកត់ចំណងដៃឌីជីថល</h1>
+        <p class="text-xs text-stone-500">មង្គលការ៖ សុខ វិបុល & ចាន់ ធីតា</p>
+      </div>
+      <div class="flex gap-2">
+        <button onclick="exportToCSV()" class="bg-amber-50 border border-amber-300 text-amber-900 hover:bg-amber-100 px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 shadow-sm">
+          <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
+          <span>ទាញយកជា Excel (CSV)</span>
+        </button>
+        <button onclick="lockLedger()" class="bg-stone-100 text-stone-600 hover:bg-stone-200 p-2 rounded-xl">
+          <i data-lucide="log-out" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Summary Stats Cards -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+      <div class="bg-white p-4 rounded-2xl border border-stone-200 shadow-sm space-y-1">
+        <p class="text-[11px] text-stone-500 font-medium">សរុបប្រាក់ដុល្លារ ($)</p>
+        <h3 id="total-usd" class="text-xl md:text-2xl font-bold text-emerald-600">$0.00</h3>
+      </div>
+      <div class="bg-white p-4 rounded-2xl border border-stone-200 shadow-sm space-y-1">
+        <p class="text-[11px] text-stone-500 font-medium">សរុបប្រាក់រៀល (៛)</p>
+        <h3 id="total-khr" class="text-xl md:text-2xl font-bold text-amber-700">0 ៛</h3>
+      </div>
+      <div class="bg-white p-4 rounded-2xl border border-stone-200 shadow-sm space-y-1">
+        <p class="text-[11px] text-stone-500 font-medium">ចំនួនភ្ញៀវចងដៃ</p>
+        <h3 id="total-guests" class="text-xl md:text-2xl font-bold text-stone-900">0 នាក់</h3>
+      </div>
+      <div class="bg-white p-4 rounded-2xl border border-stone-200 shadow-sm space-y-1">
+        <p class="text-[11px] text-stone-500 font-medium">តាម KHQR / ធនាគារ</p>
+        <h3 id="total-khqr-count" class="text-xl md:text-2xl font-bold text-blue-600">0 នាក់</h3>
+      </div>
+    </div>
+
+    <!-- Form កត់ត្រាចំណងដៃថ្មី -->
+    <div class="bg-white p-6 rounded-3xl border border-stone-200/80 shadow-sm space-y-4">
+      <h2 class="font-bold text-stone-900 text-sm flex items-center gap-2">
+        <i data-lucide="plus-circle" class="w-4 h-4 text-amber-700"></i>
+        <span>កត់ចំណងដៃថ្មី</span>
+      </h2>
+
+      <form id="gift-form" onsubmit="handleAddGift(event)" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs">
+        <div>
+          <label class="block text-stone-600 mb-1 font-medium">ឈ្មោះភ្ញៀវ *</label>
+          <input type="text" id="guest-name" required placeholder="ឧ. ឯកឧត្តម សុខ សុវណ្ណ" class="w-full border border-stone-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-amber-500">
+        </div>
+
+        <div>
+          <label class="block text-stone-600 mb-1 font-medium">ភាគី / ភ្ញៀវខាង</label>
+          <select id="guest-side" class="w-full border border-stone-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-amber-500">
+            <option value="ខាងកូនកំលោះ">ខាងកូនកំលោះ</option>
+            <option value="ខាងកូនក្រមុំ">ខាងកូនក្រមុំ</option>
+            <option value="មិត្តភក្តិ">មិត្តភក្តិ</option>
+            <option value="ភ្ញៀវកិត្តិយស">ភ្ញៀវកិត្តិយស</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-stone-600 mb-1 font-medium">វិធីទូទាត់</label>
+          <select id="payment-method" class="w-full border border-stone-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-amber-500">
+            <option value="សាច់ប្រាក់">💵 សាច់ប្រាក់ (Cash)</option>
+            <option value="KHQR">💳 KHQR / ធនាគារ</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-stone-600 mb-1 font-medium">រូបិយប័ណ្ណ</label>
+          <select id="currency-type" class="w-full border border-stone-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-amber-500">
+            <option value="USD">ដុល្លារ ($)</option>
+            <option value="KHR">រៀល (៛)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-stone-600 mb-1 font-medium">ចំនួនទឹកប្រាក់ *</label>
+          <input type="number" id="gift-amount" required step="any" placeholder="ឧ. 50 ឬ 200000" class="w-full border border-stone-200 rounded-xl px-3 py-2 text-sm font-semibold focus:outline-none focus:border-amber-500">
+        </div>
+
+        <div class="flex items-end">
+          <button type="submit" class="w-full bg-amber-800 hover:bg-amber-700 text-white font-semibold py-2.5 rounded-xl text-xs transition-all shadow-md active:scale-95">
+            + រក្សាទុកចំណងដៃ
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- បញ្ជីទិន្នន័យចំណងដៃ (Table) -->
+    <div class="bg-white p-6 rounded-3xl border border-stone-200/80 shadow-sm space-y-4">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+        <h2 class="font-bold text-stone-900 text-sm">បញ្ជីកត់ត្រាចំណងដៃ</h2>
+        <input type="text" id="search-input" onkeyup="filterGifts()" placeholder="ស្វែងរកឈ្មោះភ្ញៀវ..." class="border border-stone-200 rounded-xl px-3 py-1.5 text-xs w-full sm:w-60 focus:outline-none focus:border-amber-500">
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead>
+            <tr class="border-b border-stone-200 text-stone-400">
+              <th class="py-2.5 px-3">ល.រ</th>
+              <th class="py-2.5 px-3">ឈ្មោះភ្ញៀវ</th>
+              <th class="py-2.5 px-3">ខាង</th>
+              <th class="py-2.5 px-3">វិធីទូទាត់</th>
+              <th class="py-2.5 px-3">ចំនួនទឹកប្រាក់</th>
+              <th class="py-2.5 px-3 text-right">សកម្មភាព</th>
+            </tr>
+          </thead>
+          <tbody id="gift-table-body" class="divide-y divide-stone-100">
+            <!-- ជួរទិន្នន័យនឹងបង្ហាញនៅទីនេះ -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
+    });
+
+    const CORRECT_PIN = "1688";
+    let giftsData = JSON.parse(localStorage.getItem('wedding_gifts_ledger')) || [];
+
+    // ១. ផ្ទៀងផ្ទាត់ PIN
+    function unlockLedger() {
+      const input = document.getElementById('pin-input').value;
+      if (input === CORRECT_PIN) {
+        document.getElementById('pin-modal').classList.add('hidden');
+        document.getElementById('main-app').classList.remove('hidden');
+        renderGifts();
+      } else {
+        alert("លេខកូដសម្ងាត់មិនត្រឹមត្រូវទេ!");
+      }
+    }
+
+    function lockLedger() {
+      document.getElementById('pin-input').value = '';
+      document.getElementById('main-app').classList.add('hidden');
+      document.getElementById('pin-modal').classList.remove('hidden');
+    }
+
+    // ២. បន្ថែមចំណងដៃថ្មី
+    function handleAddGift(e) {
+      e.preventDefault();
+      const name = document.getElementById('guest-name').value.trim();
+      const side = document.getElementById('guest-side').value;
+      const method = document.getElementById('payment-method').value;
+      const currency = document.getElementById('currency-type').value;
+      const amount = parseFloat(document.getElementById('gift-amount').value);
+
+      const newGift = {
+        id: Date.now(),
+        name,
+        side,
+        method,
+        currency,
+        amount,
+        date: new Date().toLocaleTimeString('km-KH', { hour: '2-digit', minute: '2-digit' })
+      };
+
+      giftsData.unshift(newGift);
+      localStorage.setItem('wedding_gifts_ledger', JSON.stringify(giftsData));
+      
+      document.getElementById('gift-form').reset();
+      renderGifts();
+    }
+
+    // ៣. បង្ហាញ និងគណនាតួលេខសរុប
+    function renderGifts(dataToRender = giftsData) {
+      const tbody = document.getElementById('gift-table-body');
+      tbody.innerHTML = '';
+
+      let totalUSD = 0;
+      let totalKHR = 0;
+      let khqrCount = 0;
+
+      dataToRender.forEach((gift, index) => {
+        if (gift.currency === 'USD') totalUSD += gift.amount;
+        if (gift.currency === 'KHR') totalKHR += gift.amount;
+        if (gift.method === 'KHQR') khqrCount++;
+
+        const row = document.createElement('tr');
+        row.className = "hover:bg-amber-50/40 transition-colors";
+        row.innerHTML = `
+          <td class="py-3 px-3 text-stone-400">${dataToRender.length - index}</td>
+          <td class="py-3 px-3 font-semibold text-stone-900">${gift.name}</td>
+          <td class="py-3 px-3 text-stone-500">${gift.side}</td>
+          <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-full text-[10px] ${gift.method === 'KHQR' ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'bg-emerald-50 text-emerald-700 border border-emerald-200'}">${gift.method}</span></td>
+          <td class="py-3 px-3 font-bold ${gift.currency === 'USD' ? 'text-emerald-700' : 'text-amber-800'}">
+            ${gift.currency === 'USD' ? '$' + gift.amount.toLocaleString() : gift.amount.toLocaleString() + ' ៛'}
+          </td>
+          <td class="py-3 px-3 text-right">
+            <button onclick="deleteGift(${gift.id})" class="text-rose-500 hover:text-rose-700 p-1">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+
+      document.getElementById('total-usd').innerText = '$' + totalUSD.toLocaleString();
+      document.getElementById('total-khr').innerText = totalKHR.toLocaleString() + ' ៛';
+      document.getElementById('total-guests').innerText = giftsData.length + ' នាក់';
+      document.getElementById('total-khqr-count').innerText = khqrCount + ' នាក់';
+
+      lucide.createIcons();
+    }
+
+    // ៤. លុបទិន្នន័យ
+    function deleteGift(id) {
+      if (confirm("តើអ្នកពិតជាចង់លុបទិន្នន័យនេះមែនទេ?")) {
+        giftsData = giftsData.filter(item => item.id !== id);
+        localStorage.setItem('wedding_gifts_ledger', JSON.stringify(giftsData));
+        renderGifts();
+      }
+    }
+
+    // ៥. ស្វែងរកឈ្មោះភ្ញៀវ
+    function filterGifts() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const filtered = giftsData.filter(g => g.name.toLowerCase().includes(query));
+      renderGifts(filtered);
+    }
+
+    // ៦. Export ទិន្នន័យជា File Excel (CSV)
+    function exportToCSV() {
+      if (giftsData.length === 0) {
+        alert("មិនទាន់មានទិន្នន័យសម្រាប់ Export ទេ!");
+        return;
+      }
+
+      let csv = "\uFEFFល.រ,ឈ្មោះភ្ញៀវ,ភាគី,វិធីទូទាត់,រូបិយប័ណ្ណ,ចំនួនទឹកប្រាក់,ម៉ោង\n";
+      giftsData.forEach((g, i) => {
+        csv += `${i + 1},"${g.name}","${g.side}","${g.method}","${g.currency}",${g.amount},"${g.date}"\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `Wedding_Gift_Ledger_${new Date().toISOString().slice(0,10)}.csv`;
+      link.click();
+    }
+  </script>
+</body>
+</html>
